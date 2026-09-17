@@ -1,0 +1,26 @@
+-- Suggested Power BI measures
+
+Total Bookings = COUNTROWS(Bookings)
+
+Total Revenue = SUM(Bookings[Revenue_EUR])
+
+Total Profit = SUM(Bookings[Profit_EUR])
+
+Average Booking Value = DIVIDE([Total Revenue], [Total Bookings])
+
+Cancellation Rate =
+DIVIDE(
+    CALCULATE([Total Bookings], Bookings[Status] = "Cancelled"),
+    [Total Bookings]
+)
+
+Completed Revenue =
+CALCULATE([Total Revenue], Bookings[Status] = "Completed")
+
+-- Suggested visuals:
+-- 1. KPI cards: Total Revenue, Total Profit, Total Bookings, Cancellation Rate
+-- 2. Line chart: Revenue by Month
+-- 3. Bar chart: Revenue by Destination
+-- 4. Donut: Revenue by Booking Type
+-- 5. Stacked column: Revenue by Customer Segment and Channel
+-- 6. Slicers: Year, Destination, Booking Type, Channel, Customer Segment
